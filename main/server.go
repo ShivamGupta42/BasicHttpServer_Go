@@ -20,9 +20,14 @@ func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func write(w http.ResponseWriter, p *PlayerServer, player string) {
-	_, err := fmt.Fprintf(w, p.store.GetPlayerScore(player))
-	if err != nil {
-		panic(err)
+	score := p.store.GetPlayerScore(player)
+	if score == "" {
+		w.WriteHeader(404)
+	} else {
+		_, err := fmt.Fprintf(w, score)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
