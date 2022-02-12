@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"github.com/gorilla/mux"
 	"net/http"
 )
 
@@ -11,20 +12,6 @@ type Employee struct {
 	Name    string `json:"employee_name" xml:"emp_name"`
 	Age     string `json:"age" xml:"age"`
 	PinCode string `json:"pincode" xml:"pincode"`
-}
-
-func Route1(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(200)
-	fmt.Fprintf(w, "Route1")
-}
-
-func Route2(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(200)
-	fmt.Fprintf(w, "Route2")
-}
-func Route3(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(200)
-	fmt.Fprintf(w, "Route3")
 }
 
 func GetAllEmployees(w http.ResponseWriter, r *http.Request) {
@@ -40,4 +27,17 @@ func GetAllEmployees(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "application/xml")
 		xml.NewEncoder(w).Encode(employees)
 	}
+}
+
+func GetEmployee(w http.ResponseWriter, r *http.Request) {
+	m := mux.Vars(r)
+	w.WriteHeader(201)
+	fmt.Fprintf(w, m["employee"])
+}
+
+func CreateEmployee(w http.ResponseWriter, r *http.Request) {
+	m := mux.Vars(r)
+	w.WriteHeader(201)
+	fmt.Fprintf(w, m["employee"]+" employee created")
+
 }
