@@ -1,6 +1,6 @@
 package main
 
-import "github.com/fanofsherlock/BasicHttpServer_Go/server"
+import "github.com/fanofsherlock/BasicHttpServer_Go/TimeApiMuxServer"
 
 func main() {
 	/*
@@ -20,5 +20,7 @@ func main() {
 		log.Fatal(http.ListenAndServe(":5000", handler))
 	*/
 
-	server.StartServer()
+	//BasicServer.StartBasicServer()
+
+	TimeApiMuxServer.StartTimeServer()
 }

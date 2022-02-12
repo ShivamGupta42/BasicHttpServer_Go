@@ -39,8 +39,8 @@ func TestPlayerServer(t *testing.T) {
 	//	request, _ := http.NewRequest(http.MethodGet, "/players/shivam", nil)
 	//	response := httptest.NewRecorder()
 	//
-	//	server := PlayerServer{}
-	//	server.ServeHTTP(response, request)
+	//	BasicServer := PlayerServer{}
+	//	BasicServer.ServeHTTP(response, request)
 	//	got := response.Body.String()
 	//	want := "10"
 	//	if got != want {
